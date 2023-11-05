@@ -4,6 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Anvi web page</title>
+
+<!--    Style and Script for Drag and Drop elements-->
+    <style>
+        #div1, #div2 {
+          float: left;
+          width: 60px;
+          height: 100px;
+          margin: 10px;
+          padding: 10px;
+          border: 1px solid black;
+        }
+    </style>
+    <script>
+        function allowDrop(ev) {
+          ev.preventDefault();
+        }
+
+        function drag(ev) {
+          ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+          ev.preventDefault();
+          var data = ev.dataTransfer.getData("text");
+          ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+
+<!--    For storing data locally-->
+    <script>
+        function clickCounter() {
+          if (typeof(Storage) !== "undefined") {
+            if (localStorage.clickcount) {
+              localStorage.clickcount = Number(localStorage.clickcount)+1;
+            } else {
+              localStorage.clickcount = 1;
+            }
+            document.getElementById("result").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
+          } else {
+            document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+          }
+        }
+
+        function clearCounter() {
+            localStorage.clickcount = 0;
+            document.getElementById("result").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
+            localStorage.removeItem("clickcount");
+        }
+    </script>
+
 </head>
 
 
@@ -130,6 +180,43 @@
     <br>
     <hr>
 
+    <p><button onclick="clickCounter()" type="button">Click me!</button></p>
+    <div id="result"></div>
+    <p>Click the button to see the counter increase.</p>
+    <p><button onclick="clearCounter()" type="button">Clear me!</button></p>
+    <hr>
+
+
+    <!--Web Worker runs in background script without disturbing front web page-->
+    <p>Count numbers: <output id="wwresult"></output></p>
+    <button onclick="startWorker()">Start Worker</button>
+    <button onclick="stopWorker()">Stop Worker</button>
+
+    <script>
+        var w;
+
+        function startWorker() {
+          if (typeof(Worker) !== "undefined") {
+            if (typeof(w) == "undefined") {
+              w = new Worker("demo_workers.js");
+            }
+            w.onmessage = function(event) {
+              document.getElementById("wwresult").innerHTML = event.data;
+            };
+          } else {
+            document.getElementById("wwresult").innerHTML = "Sorry! No Web Worker support.";
+          }
+        }
+
+        function stopWorker() {
+          w.terminate();
+          w = undefined;
+        }
+    </script>
+    <br>
+    <hr>
+
+
     <label for="email">Enter your email:</label>
     <input type="email" id="email" name="email">
     <br>
@@ -209,6 +296,17 @@
 <br>
 <hr>
 
+<h2>Drag and Drop</h2>
+<p>Drag the image back and forth between the two div elements.</p>
+
+<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+    <img src="pic_bulbon.gif" draggable="true" ondragstart="drag(event)" id="drag1" width="60" height="100">
+</div>
+
+<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br><br><br><br><br><br><br><br><br>
+<hr>
+
 <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY?controls=1">
 </iframe>
 <br>
@@ -217,6 +315,31 @@
 <object width="100%" height="500px" data="background.jfif"></object>
 <br>
 <hr>
+
+
+<h1>HTML Geolocation</h1>
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<script>
+    const x = document.getElementById("demo");
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(showPosition);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+
+    function showPosition(position) {
+        x.innerHTML="Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
+    }
+</script>
 
 
 </body>
