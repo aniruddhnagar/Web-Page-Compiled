@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ruddh Web Page</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+<!--    To style table borders-->
+    <style>
+
+        table, th, td {
+          border:1px solid black;
+          border-collapse: collapse;
+          border-radius: 10px;
+          border-color: #114977;
+          border-spacing: 30px;
+        }
+
+        th, td {
+          text-align: center;
+        }
+
+        tr:nth-child(even) {
+          background-color: rgba(150, 212, 212, 0.4);
+        }
+
+        tr:hover {background-color: #AEF8B7;}
+
+    </style>
+
+    <style>
+        /* Style the element with the id "myHeader" */
+        #myHeader {
+          background-color: lightblue;
+          color: black;
+          padding: 40px;
+          text-align: center;
+        }
+
+        /* Style all elements with the class name "city" */
+        .city {
+          background-color: tomato;
+          color: white;
+          padding: 10px;
+        }
+
+        .main {
+          text-align: center;
+        }
+    </style>
+
+    <!--To attach style attributes from other file-->
+    <!--    <link rel="stylesheet" href="styles.css">-->
+
+</head>
+
+
+
+<!--<body>-->
+
+<!--To set page background color-->
+<body style="background-color:#9FE2BF;">
+
+<!--To set a image in the page background-->
+<!--<style>-->
+<!--    body {-->
+<!--      background-image: url('background.jfif');-->
+<!--      background-repeat: no-repeat;-->
+<!--      background-attachment: fixed;-->
+<!--      background-size: 100% 100%;-->
+<!--    }-->
+<!--</style>-->
+
+
+<h1 id="home" style="text-align:center; font-size:50px;">Anjali Nagar</h1>
+<hr>
+<h1 style="background-color:cyan;">This is a heading</h1>
+<!-- An element with a unique id -->
+<h2 id="myHeader">My Cities</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+<!--Used for bookmark-->
+<p><a href="#CB">Jump to Colored borders</a></p>
+<hr>
+
+<p style="font-family:courier; font-size:160%;">My first paragraph.</p>
+<p title="I'm a tooltip">Mouse over this paragraph, to display the title attribute as a tooltip.</p>
+<p Style="Color:red">My colored paragraph.</p>
+<p>The <abbr title="World Health Organization">WHO</abbr> was founded in 1948.</p>
+<pre style="background-color:skyblue;">
+  My Bonnie lies over the ocean.
+
+  My Bonnie lies over the sea.
+
+  My Bonnie lies over the ocean.
+</pre>
+<hr>
+
+<h2>An Unordered HTML List</h2>
+
+<ul style="list-style-type:square;">
+    <li>Coffee</li>
+    <li>Tea
+        <ul>
+            <li>Black tea</li>
+            <li>Green tea</li>
+        </ul>
+    </li>
+    <li>Milk</li>
+</ul>
+
+<h2>An Ordered HTML List</h2>
+
+<ol>
+    <li>Coffee</li>
+    <li>Tea
+        <ol>
+            <li>Black tea</li>
+            <li>Green tea</li>
+        </ol>
+    </li>
+    <li>Milk</li>
+</ol>
+<ol type="I">
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+</ol>
+<ol type="A">
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+</ol>
+<ol type="a">
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+</ol>
+<ol type="i">
+    <li>Coffee</li>
+    <li>Tea</li>
+    <li>Milk</li>
+</ol>
+
+<h2>An Description HTML List</h2>
+
+<dl>
+    <dt>Coffee</dt>
+    <dd>- black hot drink</dd>
+    <dt>Milk</dt>
+    <dd>- white cold drink</dd>
+</dl>
+
+<br>
+<hr>
+
+<table style="width:80%">
+    <caption>Persons details</caption>
+    <tr>
+        <th>Person 1</th>
+        <th>Person 2</th>
+        <th>Person 3</th>
+    </tr>
+    <tr>
+        <td style="width:50%">Emil</td>
+        <td>Tobias</td>
+        <td>Linus</td>
+    </tr>
+    <tr>
+        <td style="height:50px">16</td>
+        <td>14</td>
+        <td>10</td>
+    </tr>
+</table>
+<br>
+
+<table style="width:80%">
+    <caption>Monthly savings</caption>
+    <tr>
+        <th colspan="2">Name</th>
+        <th>Age</th>
+    </tr>
+    <tr>
+        <td>Jill</td>
+        <td>Smith</td>
+        <td>50</td>
+    </tr>
+    <tr>
+        <td>Eve</td>
+        <td>Jackson</td>
+        <td>94</td>
+    </tr>
+</table>
+<br>
+<hr>
+
+<!--Classes in html -->
+<h2>Use of The class Attribute in JavaScript</h2>
+<p>Click the button to hide all elements with class name "city":</p>
+
+<button onclick="myFunction1()">Hide elements</button>
+
+<h2 class="city main">London</h2>
+<p>London is the capital of England.</p>
+
+<h2 class="city">Paris</h2>
+<p>Paris is the capital of France.</p>
+
+<h2 class="city">Tokyo</h2>
+<p>Tokyo is the capital of Japan.</p>
+
+<script>
+    function myFunction1() {
+      var x = document.getElementsByClassName("city");
+      for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+      }
+    }
+</script>
+<button onclick="myFunction2()">Show elements</button>
+<script>
+    function myFunction2() {
+      var x = document.getElementsByClassName("city");
+      for (var i = 0; i < x.length; i++) {
+        x[i].style.display = "block";
+      }
+    }
+</script>
+
+<br>
+<hr>
+
+<h1 id="textChanger">Hello World!</h1>
+<button onclick="displayResult()">Change text</button>
+
+<script>
+    function displayResult() {
+      document.getElementById("textChanger").innerHTML = "Have a nice day!";
+    }
+</script>
+
+<br>
+<hr>
+
+
+</body>
